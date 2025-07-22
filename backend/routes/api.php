@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AutorController;
+use App\Http\Controllers\Api\LibsController;
 use App\Http\Controllers\Api\UserController;
 
 ////// PARTE USER  //////
@@ -18,6 +20,14 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // Logout (requiere token válido)
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+////// LIBS PART ////// 
+
+Route::apiResource('libs', LibsController::class);
+
+////// AUTORS PART ////// 
+
+Route::apiResource('autors', AutorController::class);
 
 
 
