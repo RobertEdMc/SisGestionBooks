@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Author;
-use App\Http\Requests\AutorRequest;
+use App\Http\Requests\AuthorRequest;
 
-class AutorController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,15 +21,15 @@ class AutorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AutorRequest $request)
+    public function store(AuthorRequest $request)
     {
-        $autor = Author::create([
+        $author = Author::create([
             'name'        => $request->name,
             'email'       => $request->email,
             'total_books' => 0,
         ]);
 
-        return response()->json(['message' => 'Author creado exitosamente', 'autor' => $autor], 201);
+        return response()->json(['message' => 'Author creado exitosamente', 'author' => $author], 201);
     }
 
     /**
@@ -37,29 +37,29 @@ class AutorController extends Controller
      */
     public function show(string $id)
     {
-        $autor = Author::find($id);
+        $author = Author::find($id);
 
-        if (!$autor) {
+        if (!$author) {
             return response()->json(['message' => 'Author no encontrado'], 404);
         }
 
-        return response()->json($autor);
+        return response()->json($author);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AutorRequest $request, string $id)
+    public function update(AuthorRequest $request, string $id)
     {
-        $autor = Author::find($id);
+        $author = Author::find($id);
 
-        if (!$autor) {
+        if (!$author) {
             return response()->json(['message' => 'Author no encontrado'], 404);
         }
 
-        $autor->update($request->validated());
+        $author->update($request->validated());
 
-        return response()->json(['message' => 'Author actualizado correctamente', 'author' => $autor]);
+        return response()->json(['message' => 'Author actualizado correctamente', 'author' => $author]);
     }
 
     /**
@@ -67,13 +67,13 @@ class AutorController extends Controller
      */
     public function destroy(string $id)
     {
-        $autor = Author::find($id);
+        $author = Author::find($id);
 
-        if (!$autor) {
+        if (!$author) {
             return response()->json(['message' => 'Author no encontrado'], 404);
         }
 
-        $autor->delete();
+        $author->delete();
 
         return response()->json(['message' => 'Author eliminado correctamente']);
     }

@@ -17,9 +17,9 @@ class Author extends Model
         'total_books',
     ];
 
-    //La Relación un autor tiene muchos libros
+    //La Relación un author tiene muchos libros
     public function libs()
     {
-        return $this->hasMany(Libs::class, 'autor_id');
+        return $this->hasMany(Libs::class, 'author_id');
     }
 }

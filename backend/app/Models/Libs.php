@@ -14,12 +14,12 @@ class Libs extends Model
     protected $fillable = [
         'title',
         'genre',
-        'autor_id',
+        'author_id',
     ];
 
-    // Relación: un libro pertenece a un autor
-    public function autor()
+    // Relación: un libro pertenece a un author
+    public function author()
     {
-        return $this->belongsTo(Author::class, 'autor_id');
+        return $this->belongsTo(Author::class, 'author_id');
     }
 }

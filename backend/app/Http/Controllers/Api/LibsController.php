@@ -14,7 +14,7 @@ class LibsController extends Controller
      */
     public function index()
     {
-        $libs = Libs::with('autor')->get();
+        $libs = Libs::with('author')->get();
         return response()->json($libs);
     }
 
@@ -27,11 +27,11 @@ class LibsController extends Controller
         $lib = Libs::create([
             'title' => $request->title,
             'description' => $request->description,
-            'autor_id' => $request->autor_id,
+            'author_id' => $request->author_id,
         ]);
 
-        // Dispara el job para actualizar la cantidad de libros del autor
-        UpdatedTotalLibsJob::dispatch($lib->autor_id);
+        // Dispara el job para actualizar la cantidad de libros del author
+        UpdatedTotalLibsJob::dispatch($lib->author_id);
 
         return response()->json(['message' => 'Libro creado exitosamente', 'lib' => $lib], 201);
     }
@@ -41,7 +41,7 @@ class LibsController extends Controller
      */
     public function show(string $id)
     {
-         $lib = Libs::with('autor')->find($id);
+         $lib = Libs::with('author')->find($id);
 
         if (!$lib) {
             return response()->json(['message' => 'Libro no encontrado'], 404);
@@ -61,14 +61,14 @@ class LibsController extends Controller
             return response()->json(['message' => 'Libro no encontrado'], 404);
         }
 
-        if($lib->autor_id != $request->autor_id){
-            $lastAutor = $lib->autor_id;
+        if($lib->author_id != $request->author_id){
+            $lastAuthor = $lib->author_id;
 
             $lib->update($request->validated());
 
-            // Actualiza ambos autores
-            UpdatedTotalLibsJob::dispatch($lastAutor);
-            UpdatedTotalLibsJob::dispatch($lib->autor_id);
+            // Actualiza ambos authores
+            UpdatedTotalLibsJob::dispatch($lastAuthor);
+            UpdatedTotalLibsJob::dispatch($lib->author_id);
 
         }else {
              // Actualiza el libro con los datos validados
@@ -89,12 +89,12 @@ class LibsController extends Controller
             return response()->json(['message' => 'Libro no encontrado'], 404);
         }
 
-        $autorId = $lib->autor_id;
+        $authorId = $lib->author_id;
 
         $lib->delete();
 
-        // Actualiza la cantidad de libros del autor tras eliminar
-        UpdatedTotalLibsJob::dispatch($autorId);
+        // Actualiza la cantidad de libros del author tras eliminar
+        UpdatedTotalLibsJob::dispatch($authorId);
 
         return response()->json(['message' => 'Libro eliminado correctamente', 'lib' => $lib]);
     }

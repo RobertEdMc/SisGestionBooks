@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\AutorController;
+use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\LibsController;
 use App\Http\Controllers\Api\UserController;
 
@@ -27,7 +27,7 @@ Route::apiResource('libs', LibsController::class);
 
 ////// AUTORS PART ////// 
 
-Route::apiResource('authors', AutorController::class);
+Route::apiResource('authors', AuthorController::class);
 
 
 

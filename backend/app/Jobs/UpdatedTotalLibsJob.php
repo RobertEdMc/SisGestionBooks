@@ -14,14 +14,14 @@ class UpdatedTotalLibsJob implements ShouldQueue
 
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $autorId;
+    protected $authorId;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($autorId)
+    public function __construct($authorId)
     {
-        $this->autorId = $autorId;
+        $this->authorId = $authorId;
     }
 
     /**
@@ -29,11 +29,11 @@ class UpdatedTotalLibsJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $autor = Author::find($this->autorId);
+        $author = Author::find($this->authorId);
 
-        if ($autor) {
-            $autor->total_books = $autor->libs()->count();
-            $autor->save();
+        if ($author) {
+            $author->total_books = $author->libs()->count();
+            $author->save();
         }
     }
 }
