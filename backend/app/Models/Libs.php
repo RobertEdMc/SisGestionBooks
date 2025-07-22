@@ -13,7 +13,7 @@ class Libs extends Model
 
     protected $fillable = [
         'title',
-        'genre',
+        'description',
         'author_id',
     ];
 
