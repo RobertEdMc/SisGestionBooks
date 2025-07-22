@@ -13,4 +13,14 @@ const router = createRouter({
   routes
 });
 
+//  Protección de rutas
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token');
+  if (to.path === '/dashboard' && !token) {
+    next('/');
+  } else {
+    next();
+  }
+});
+
 export default router;
