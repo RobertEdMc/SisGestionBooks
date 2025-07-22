@@ -1,12 +1,12 @@
 # SisGestionBooks
 # 📚 Sistema de Gestión de Libros y Autores
 
-Aplicación web desarrollada con Vue 3 + TypeScript y Laravel 10 para gestionar libros, autores y usuarios. Incluye autenticación, exportación en Excel y validaciones.
+Aplicación web desarrollada con Vue 3 + TypeScript y Laravel 12x para gestionar libros, autores y usuarios. Incluye autenticación, exportación en Excel y validaciones.
 
 ## 🛠️ Tecnologías
 
 - Frontend: Vue 3 + Vite + TypeScript
-- Backend: Laravel 10 + Sanctum
+- Backend: Laravel 12x + Sanctum
 - Base de datos: PostgreSQL
 - Estilos: TailwindCSS (opcional)
 
