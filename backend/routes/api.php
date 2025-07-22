@@ -27,7 +27,7 @@ Route::apiResource('libs', LibsController::class);
 
 ////// AUTORS PART ////// 
 
-Route::apiResource('autors', AutorController::class);
+Route::apiResource('authors', AutorController::class);
 
 
 

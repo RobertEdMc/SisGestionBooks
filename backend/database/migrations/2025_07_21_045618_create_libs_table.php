@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('author_id')
-                ->constrained('autors')
+                ->constrained('authors')
                 ->onDelete('cascade');
             $table->timestamps();
         });

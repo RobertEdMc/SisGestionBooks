@@ -27,7 +27,7 @@ class LibsRequest extends FormRequest
             return [
                 'title'  => 'required|string|max:255',
                 'description' => 'nullable|string|max:255',
-                'autor_id' => 'required|exists:autors,id',
+                'autor_id' => 'required|exists:authors,id',
             ];
         }
 
@@ -35,7 +35,7 @@ class LibsRequest extends FormRequest
             return [
                 'title'  => 'required|string|max:255',
                 'description' => 'nullable|string|max:255',
-                'autor_id' => 'required|exists:autors,id',
+                'autor_id' => 'required|exists:authors,id',
             ];
         }
 

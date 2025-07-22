@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\Autor;
+use App\Models\Author;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -29,7 +29,7 @@ class UpdatedTotalLibsJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $autor = Autor::find($this->autorId);
+        $autor = Author::find($this->autorId);
 
         if ($autor) {
             $autor->total_books = $autor->libs()->count();

@@ -20,6 +20,6 @@ class Libs extends Model
     // Relación: un libro pertenece a un autor
     public function autor()
     {
-        return $this->belongsTo(Autor::class, 'autor_id');
+        return $this->belongsTo(Author::class, 'autor_id');
     }
 }
