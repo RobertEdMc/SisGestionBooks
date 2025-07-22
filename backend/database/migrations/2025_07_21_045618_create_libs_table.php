@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('libs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->string('author_id');
+            $table->text('description')->nullable();
+            $table->string('author_id')
+                ->constrained('autors')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
