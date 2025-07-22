@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\LibsController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ExportController;
 
 ////// PARTE USER  //////
 
@@ -28,6 +29,10 @@ Route::apiResource('libs', LibsController::class);
 ////// AUTORS PART ////// 
 
 Route::apiResource('authors', AuthorController::class);
+
+//// Exportar Excel /////
+
+Route::get('export', [ExportController::class, 'exportAuthorsAndLibs']);
 
 
 
