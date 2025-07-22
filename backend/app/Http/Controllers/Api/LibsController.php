@@ -46,7 +46,7 @@ class LibsController extends Controller
         if (!$lib) {
             return response()->json(['message' => 'Libro no encontrado'], 404);
         }
-
+        
         return response()->json($lib);
     }
 
@@ -61,7 +61,19 @@ class LibsController extends Controller
             return response()->json(['message' => 'Libro no encontrado'], 404);
         }
 
-        $lib->update($request->validated());
+        if($lib->autor_id != $request->autor_id){
+            $lastAutor = $lib->autor_id;
+
+            $lib->update($request->validated());
+
+            // Actualiza ambos autores
+            UpdatedTotalLibsJob::dispatch($lastAutor);
+            UpdatedTotalLibsJob::dispatch($lib->autor_id);
+
+        }else {
+             // Actualiza el libro con los datos validados
+            $lib->update($request->validated());
+        }
 
         return response()->json(['message' => 'Libro actualizado correctamente', 'lib' => $lib]);
     }
